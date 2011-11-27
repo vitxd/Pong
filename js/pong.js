@@ -28,19 +28,16 @@ Pong.prototype.eventHandler = function(){
 					break;
 				case 40:  /* Down arrow was pressed */
 					self.player_1.move('down');
-						break;
+					break;
 				case 37:  /* Left arrow was pressed */
 					self.player_2.move('down');
-						break;
+					break;
 				case 39:  /* Right arrow was pressed */
 					self.player_2.move('up');
-						break;
+					break;
 				}
 		},true);
 };
-
-
-
 
 
 Pong.prototype.run = function(){

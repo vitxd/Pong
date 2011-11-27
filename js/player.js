@@ -17,10 +17,10 @@ Player.prototype.move = function(direction){
 	switch(direction)
 	{
 		case 'up':
-			this.y += 10;
+			this.y -= 10;
 			break;
 		case 'down':
-			this.y -= 10;
+			this.y += 10;
 			break;
 	}
 };
