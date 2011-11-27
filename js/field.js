@@ -20,5 +20,5 @@ Field.prototype.redraw = function(ctx){
 };
 
 Field.prototype.getBoundary = function(){
-	return {top: this.field.x, bottom: (this.field.x + this.field.height)};
+	return {top: this.x, bottom: (this.x + this.height)};
 };

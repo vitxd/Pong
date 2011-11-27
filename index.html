@@ -4,28 +4,13 @@
 		<script type="text/javascript" language="javascript" src="js/player.js"></script>
 		<script type="text/javascript" language="javascript" src="js/field.js"></script>
 		<script type="text/javascript" language="javascript">
-			var i	= 0
-				ws = websocket('ws://localhost');
-			;
 			function init() {  
 				var canvas	= document.getElementById('canvas'),
-					ctx		= canvas.getContext("2d"),
-					pong	= new Pong(ctx);
-//				AttachEvent(canvas, "click", EventHandler); 
-				pong.run();
+						ctx		= canvas.getContext("2d"),
+						pong	= new Pong(ctx);
+
+				pong.init();
 			}
-			 
-			function AttachEvent(element, type, handler) {  
-				if (element.addEventListener) element.addEventListener(type, handler, false);  
-				else element.attachEvent("on"+type, handler);  
-			}  
-			function EventHandler(e) {  
-				console.log(this);  
-			}  
-			
-			
-			
-			
 		</script>  
 	</head>  
 	<body onload="init()" style="background-color: #000;">
