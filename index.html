@@ -1,5 +1,34 @@
-<html>
-	<body>
-		<h1>Hello</h1>
-	</body>
-</html>
+<html>  
+	<head>  
+		<script type="text/javascript" language="javascript" src="js/pong.js"></script>
+		<script type="text/javascript" language="javascript" src="js/player.js"></script>
+		<script type="text/javascript" language="javascript" src="js/field.js"></script>
+		<script type="text/javascript" language="javascript">
+			var i	= 0
+				ws = websocket('ws://localhost');
+			;
+			function init() {  
+				var canvas	= document.getElementById('canvas'),
+					ctx		= canvas.getContext("2d"),
+					pong	= new Pong(ctx);
+//				AttachEvent(canvas, "click", EventHandler); 
+				pong.run();
+			}
+			 
+			function AttachEvent(element, type, handler) {  
+				if (element.addEventListener) element.addEventListener(type, handler, false);  
+				else element.attachEvent("on"+type, handler);  
+			}  
+			function EventHandler(e) {  
+				console.log(this);  
+			}  
+			
+			
+			
+			
+		</script>  
+	</head>  
+	<body onload="init()" style="background-color: #000;">
+		<canvas id="canvas" width="1000" height="500"></canvas>  
+	</body>  
+</html>  
