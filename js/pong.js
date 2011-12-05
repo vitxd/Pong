@@ -8,8 +8,7 @@ var Pong = function(ctx) {
 Pong.prototype.draw = function(){
 	this.field.redraw(this.ctx);
 	this.player_1.draw(this.ctx);
-	
-	this.player_2.draw(this.ctx, {top: this.field.x, bottom: (this.field.x + this.field.height)});
+	this.player_2.draw(this.ctx);
 };
 
 
@@ -22,21 +21,22 @@ Pong.prototype.init = function(){
 Pong.prototype.eventHandler = function(){
 	var self = this;
 	window.addEventListener('keydown',function(evt){
-				switch (evt.keyCode) {
-				case 38:  /* Up arrow was pressed */
-					self.player_1.move('up');
-					break;
-				case 40:  /* Down arrow was pressed */
-					self.player_1.move('down');
-					break;
-				case 37:  /* Left arrow was pressed */
-					self.player_2.move('down');
-					break;
-				case 39:  /* Right arrow was pressed */
-					self.player_2.move('up');
-					break;
-				}
-		},true);
+        var position,
+            boundaries = self.field.getBoundary();
+            console.log(boundaries);
+		switch (evt.keyCode) {
+	    	case 38:  /* Up arrow was pressed */
+				position = self.player_1.getPosition('up');
+                if(position > boundaries.top)
+				    self.player_1.move('up');
+				break;
+			case 40:  /* Down arrow was pressed */
+				position = self.player_1.getPosition('down');
+                if(position < boundaries.bottom)
+				    self.player_1.move('down');
+				break;
+		}
+	},true);
 };
 
 

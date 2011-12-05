@@ -1,4 +1,5 @@
 var Player = function(ctx, start_x, start_y) {
+    this.step   = 10;
 	this.height = 100;
 	this.width  = 20;
 	this.ctx	= ctx;
@@ -17,13 +18,24 @@ Player.prototype.move = function(direction){
 	switch(direction)
 	{
 		case 'up':
-			this.y -= 10;
+			this.y -= this.step;
 			break;
 		case 'down':
-			this.y += 10;
+			this.y += this.step;
 			break;
 	}
 };
 
+Player.prototype.getPosition = function(direction){
+	switch(direction)
+	{
+        case 'up':
+            return this.y - this.step - (this.height / 2);
+            break;
+        case 'down':
+            return this.y + this.step + (this.height / 2);
+            break;
+	}
+}
 
 //Player.prototype.move =
