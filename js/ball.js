@@ -1,5 +1,5 @@
 var Ball = function(x, y){
-	this.step		= 20;
+	this.step		= 2;
 	this.radius		= 15;
 	this.x			= x;
 	this.y			= y;

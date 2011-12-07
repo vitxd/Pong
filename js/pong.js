@@ -49,7 +49,7 @@ Pong.prototype.run = function(){
 	self.draw();
 	this.timer = setTimeout(function(){
 		self.run()
-	}, 100);
+	}, 10);
 };
 
 
@@ -57,8 +57,6 @@ Pong.prototype.moveBall = function(){
 	var boundaries	= this.field.getBoundary(),
 		position	= this.ball.getPosition();
 
-	console.log(position);
-	console.log(boundaries);
 	if(position.left.x <= boundaries.left)
 		this.ball.collision();
 	else if(position.right.x >= boundaries.right)
