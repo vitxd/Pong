@@ -47,19 +47,22 @@ Player.prototype.getPosition = function(direction){
 
 
 Player.prototype.ballCollision = function(ballPosition, direction){
-	console.log(ballPosition);
-	console.log('top: ' + this.getPosition('top'));
-	console.log('bottom: ' + this.getPosition('bottom'));
-	console.log('left: ' + this.getPosition('left'));
-	console.log('right: ' + this.getPosition('right'));
-	if(ballPosition.y >= this.getPosition('top') || ballPosition.y <= this.getPosition('bottom')){
-		if(direction){
-			if(ballPosition.x + ballPosition.radius >= this.getPosition('left'))
-				return true;
-		} else {
-			if(ballPosition.x - ballPosition.radius <= this.getPosition('right'))
-				return true;
-		}
+	switch(direction){
+		case 0:
+			if(ballPosition.y >= this.getPosition('top') || ballPosition.y <= this.getPosition('bottom')){
+				if(ballPosition.x + ballPosition.radius >= this.getPosition('left') && (ballPosition.y >= this.getPosition('top') || ballPosition.y <= this.getPosition('bottom') )){
+					return Math.abs(this.y - ballPosition.y);
+				}
+			}
+			break;
+		case 1:
+			if(ballPosition.y >= this.getPosition('top') || ballPosition.y <= this.getPosition('bottom')){
+				if(ballPosition.x - ballPosition.radius <= this.getPosition('right')  && ballPosition.y >= this.getPosition('top') && ballPosition.y <= this.getPosition('bottom')){
+					return Math.abs(this.y - ballPosition.y);
+				}
+			}
+			break;
 	}
-	return false;
+	
+	return -1;
 }

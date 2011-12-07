@@ -79,16 +79,30 @@ Pong.prototype.checkWallCollision = function(){
 
 
 Pong.prototype.checkPlayerCollision = function(){
-	if(this.ball.direction){
-		console.log('player 1');
-		if(this.player_1.ballCollision(this.ball.getPosition())){
-			this.ball.collision();
-		}
-	} else {
-		console.log('player 2');
-		if(this.player_2.ballCollision(this.ball.getPosition())){
-			this.ball.collision();
-		}
+	var ballPosition = this.ball.getPosition(),
+		fieldMiddle  = this.field.getMiddle(),
+		where
+	;
+	
+	switch(this.ball.direction){
+		case 1:
+			if(ballPosition.x < fieldMiddle.x ){
+				where = this.player_1.ballCollision(this.ball.getPosition(), this.ball.direction);
+				if(where >= 0){
+					console.log(where);
+					this.ball.collision();
+				}
+			}
+			break;
+		case 0:
+			if(ballPosition.x > fieldMiddle.x){
+				where = this.player_2.ballCollision(this.ball.getPosition(), this.ball.direction);
+				if(where >= 0){
+					console.log(where);
+					this.ball.collision();
+				}
+			}
+			break;
 	}
 	
 	
