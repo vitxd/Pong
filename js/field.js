@@ -20,5 +20,15 @@ Field.prototype.redraw = function(ctx){
 };
 
 Field.prototype.getBoundary = function(){
-	return {top: this.x, bottom: (this.x + this.height)};
+	return {
+		top		: this.x,
+		bottom	: this.x + this.height,
+		left	: this.y,
+		right	: this.y + this.width
+		
+	};
+};
+
+Field.prototype.getMiddle = function(){
+	return {x: this.width / 2, y: this.height / 2};
 };
