@@ -1,5 +1,5 @@
 var Ball = function(x, y){
-	this.step		= 2;
+	this.step		= 6;
 	this.radius		= 15;
 	this.x			= x;
 	this.y			= y;
@@ -14,7 +14,7 @@ Ball.prototype.draw = function(ctx){
 	ctx.beginPath();  
 	ctx.fillStyle = "white";
 	ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
-	ctx.stroke();
+	ctx.closePath();
 	ctx.fill();
 };
 
@@ -31,28 +31,8 @@ Ball.prototype.move = function(){
 };
 
 
-Ball.prototype.getPosition = function(side){
-	switch(side){
-		case 'top':
-			return {x: this.x, y: (this.y - this.radius)};
-			break;
-		case 'bottom':
-			return {x: this.x, y: (this.y + this.radius)};
-			break;
-		case 'left':
-			return {x: this.x - this.radius, y: this.y};
-			break;
-		case 'right':
-			return {x: this.x + this.radius, y: this.y};
-			break;
-		default:
-			return {
-				top		: {x: this.x, y: (this.y - this.radius)},
-				bottom	: {x: this.x, y: (this.y + this.radius)},
-				left	: {x: this.x - this.radius, y: this.y},
-				right	: {x: this.x + this.radius, y: this.y}
-			};
-	}
+Ball.prototype.getPosition = function(){
+	return {x: this.x, y: this.y, radius: this.radius};
 };
 
 

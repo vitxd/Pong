@@ -29,13 +29,37 @@ Player.prototype.move = function(direction){
 Player.prototype.getPosition = function(direction){
 	switch(direction)
 	{
-        case 'up':
-            return this.y - this.step - (this.height / 2);
+        case 'top':
+            return this.y - (this.height / 2);
             break;
-        case 'down':
-            return this.y + this.step + (this.height / 2);
+        case 'bottom':
+            return this.y + (this.height / 2);
             break;
+		case 'left':
+			return this.x - (this.width / 2);
+			break;
+		case 'right':
+			return this.x + (this.width / 2);
+			break;
 	}
 }
 
-//Player.prototype.move =
+
+
+Player.prototype.ballCollision = function(ballPosition, direction){
+	console.log(ballPosition);
+	console.log('top: ' + this.getPosition('top'));
+	console.log('bottom: ' + this.getPosition('bottom'));
+	console.log('left: ' + this.getPosition('left'));
+	console.log('right: ' + this.getPosition('right'));
+	if(ballPosition.y >= this.getPosition('top') || ballPosition.y <= this.getPosition('bottom')){
+		if(direction){
+			if(ballPosition.x + ballPosition.radius >= this.getPosition('left'))
+				return true;
+		} else {
+			if(ballPosition.x - ballPosition.radius <= this.getPosition('right'))
+				return true;
+		}
+	}
+	return false;
+}
