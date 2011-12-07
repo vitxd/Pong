@@ -49,7 +49,7 @@ Pong.prototype.run = function(){
 	self.draw();
 	this.timer = setTimeout(function(){
 		self.run()
-	}, 10);
+	}, 17);
 };
 
 
