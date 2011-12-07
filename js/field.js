@@ -6,7 +6,7 @@ var Field = function(width, height){
 };
 
 Field.prototype.redraw = function(ctx){
-//	ctx.save();  
+	ctx.save();  
 	ctx.clearRect(0,0,this.width,this.height);  
 	ctx.strokeStyle = '#c0c0c0';  
 	ctx.beginPath();  

@@ -1,5 +1,5 @@
 var Ball = function(x, y){
-	this.step		= 10;
+	this.step		= 20;
 	this.radius		= 15;
 	this.x			= x;
 	this.y			= y;
@@ -10,6 +10,7 @@ var Ball = function(x, y){
 
 
 Ball.prototype.draw = function(ctx){
+	ctx.save();
 	ctx.beginPath();  
 	ctx.fillStyle = "white";
 	ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
@@ -17,7 +18,8 @@ Ball.prototype.draw = function(ctx){
 	ctx.fill();
 };
 
-Ball.prototype.move() = function(){
+Ball.prototype.move = function(){
+	console.log('moving');
 	switch(this.direction){
 		case 0:
 			this.x += this.step;
@@ -55,5 +57,6 @@ Ball.prototype.getPosition = function(side){
 
 
 Ball.prototype.collision = function(){
-	this.direction = !this.direction;
+	console.log('collision!');
+	this.direction = (this.direction ? 0 : 1);
 };
