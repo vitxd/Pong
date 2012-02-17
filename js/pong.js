@@ -3,14 +3,15 @@ var Pong = function(ctx) {
 	this.field		= new Field(800, 400);
 	this.player_1	= new Player(this.ctx, 20, this.field.height / 2);
 	this.player_2	= new Player(this.ctx, this.field.width - 20, this.field.height / 2);
+	
 	var middle		= this.field.getMiddle();
 	this.ball		= new Ball(middle.x, middle.y);
 };
 
 Pong.prototype.draw = function(){
+	this.field.redraw(this.ctx);
 	this.moveBall();
 	this.ball.draw(this.ctx);
-	this.field.redraw(this.ctx);
 	this.player_1.draw(this.ctx);
 	this.player_2.draw(this.ctx);
 };
@@ -29,12 +30,12 @@ Pong.prototype.eventHandler = function(){
             boundaries = self.field.getBoundary();
 		switch (evt.keyCode) {
 	    	case 38:  /* Up arrow was pressed */
-				position = self.player_1.getPosition('up');
+				position = self.player_1.getPosition('top');
                 if(position > boundaries.top)
 				    self.player_1.move('up');
 				break;
 			case 40:  /* Down arrow was pressed */
-				position = self.player_1.getPosition('down');
+				position = self.player_1.getPosition('bottom');
                 if(position < boundaries.bottom)
 				    self.player_1.move('down');
 				break;
@@ -46,20 +47,67 @@ Pong.prototype.eventHandler = function(){
 Pong.prototype.run = function(){
 	var self = this;
 	self.draw();
-	setTimeout(function(){
+	this.timer = setTimeout(function(){
 		self.run()
-	}, 50);
+	}, 17);
 };
 
 
 Pong.prototype.moveBall = function(){
-	var boundaries	= this.field.getBoundary(),
-		position	= this.ball.getPosition();
-		
-	if(position.left.x == boundaries.left)
-		this.ball.collision();
-	else if(position.right.x == boundaries.right)
-		this.ball.collision();
+	
+	
+	if(!this.checkWallCollision())
+		this.checkPlayerCollision();
 	
 	this.ball.move();
 };
+
+
+Pong.prototype.checkWallCollision = function(){
+	var boundaries	= this.field.getBoundary(),
+		position	= this.ball.getPosition();
+	if((position.x - position.radius) <= boundaries.left){
+		this.ball.collision();
+		return true;
+	}
+	else if(position.x + position.radius >= boundaries.right){
+		this.ball.collision();
+		return true;
+	}
+	return false;
+};
+
+
+Pong.prototype.checkPlayerCollision = function(){
+	var ballPosition = this.ball.getPosition(),
+		fieldMiddle  = this.field.getMiddle(),
+		where
+	;
+	
+	switch(this.ball.direction){
+		case 1:
+			if(ballPosition.x < fieldMiddle.x ){
+				where = this.player_1.ballCollision(this.ball.getPosition(), this.ball.direction);
+				if(where >= 0){
+					console.log(where);
+					this.ball.collision();
+				}
+			}
+			break;
+		case 0:
+			if(ballPosition.x > fieldMiddle.x){
+				where = this.player_2.ballCollision(this.ball.getPosition(), this.ball.direction);
+				if(where >= 0){
+					console.log(where);
+					this.ball.collision();
+				}
+			}
+			break;
+	}
+	
+	
+};
+
+Pong.prototype.stop = function(){
+	clearTimeout(this.timer);
+}

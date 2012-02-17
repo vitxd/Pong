@@ -6,8 +6,8 @@ var Field = function(width, height){
 };
 
 Field.prototype.redraw = function(ctx){
-//	ctx.save();  
-	ctx.clearRect(0,0,this.width,this.height);  
+	ctx.save();  
+	ctx.clearRect(this.x,this.y,this.width + 10,this.height + 10);  
 	ctx.strokeStyle = '#c0c0c0';  
 	ctx.beginPath();  
 	ctx.moveTo(this.x,this.y);  
@@ -16,6 +16,7 @@ Field.prototype.redraw = function(ctx){
 	ctx.lineTo(this.x,this.height);  
 	ctx.lineTo(this.x,this.y);  
 	ctx.stroke(); 
+	ctx.closePath(); 
 	ctx.restore();  
 };
 

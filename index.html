@@ -4,17 +4,21 @@
 		<script type="text/javascript" language="javascript" src="js/player.js"></script>
 		<script type="text/javascript" language="javascript" src="js/ball.js"></script>
 		<script type="text/javascript" language="javascript" src="js/field.js"></script>
+		<script type="text/javascript" language="javascript" src="js/ball.js"></script>
 		<script type="text/javascript" language="javascript">
+			var pong;
 			function init() {  
 				var canvas	= document.getElementById('canvas'),
-						ctx		= canvas.getContext("2d"),
-						pong	= new Pong(ctx);
+						ctx		= canvas.getContext("2d");
 
+				pong	= new Pong(ctx);
 				pong.init();
 			}
 		</script>  
 	</head>  
 	<body onload="init()" style="background-color: #000;">
 		<canvas id="canvas" width="1000" height="500"></canvas>
-	</body>  
+	</body> 
+	<p><button id="stopit" onclick="pong.stop();">STOP!</button></p>
+	<p>hello</p>
 </html>  
