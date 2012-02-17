@@ -45,7 +45,9 @@ Player.prototype.getPosition = function(direction){
 }
 
 
-
+/**
+ * Detect if the ball collides with the player
+ */
 Player.prototype.ballCollision = function(ballPosition, direction){
 	switch(direction){
 		case 0:

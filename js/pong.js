@@ -3,9 +3,13 @@ var Pong = function(ctx) {
 	this.field		= new Field(800, 400);
 	this.player_1	= new Player(this.ctx, 20, this.field.height / 2);
 	this.player_2	= new Player(this.ctx, this.field.width - 20, this.field.height / 2);
-	
+
 	var middle		= this.field.getMiddle();
 	this.ball		= new Ball(middle.x, middle.y);
+
+
+	this.score_1    = 0;
+	this.score_2 	= 0;
 };
 
 Pong.prototype.draw = function(){
@@ -54,11 +58,8 @@ Pong.prototype.run = function(){
 
 
 Pong.prototype.moveBall = function(){
-	
-	
 	if(!this.checkWallCollision())
 		this.checkPlayerCollision();
-	
 	this.ball.move();
 };
 
@@ -67,10 +68,12 @@ Pong.prototype.checkWallCollision = function(){
 	var boundaries	= this.field.getBoundary(),
 		position	= this.ball.getPosition();
 	if((position.x - position.radius) <= boundaries.left){
+		this.score_1 ++;
 		this.ball.collision();
 		return true;
 	}
 	else if(position.x + position.radius >= boundaries.right){
+		this.score_2 ++;
 		this.ball.collision();
 		return true;
 	}

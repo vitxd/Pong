@@ -1,0 +1,3 @@
+[submodule "libcanvas"]
+	path = libcanvas
+	url = https://github.com/theshock/libcanvas.git

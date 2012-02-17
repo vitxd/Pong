@@ -5,7 +5,6 @@ var Ball = function(x, y){
 	this.y			= y;
 	this.direction	= Math.floor((Math.random() * 1000) % 2) ; // 1 Left, 0 Right
 	this.radians	= 0;
-	console.log(this.direction);
 };
 
 
@@ -19,7 +18,6 @@ Ball.prototype.draw = function(ctx){
 };
 
 Ball.prototype.move = function(){
-	console.log('moving');
 	switch(this.direction){
 		case 0:
 			this.x += this.step;
