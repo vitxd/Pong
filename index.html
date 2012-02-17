@@ -1,24 +1,20 @@
 <html>  
 	<head>  
-		<script type="text/javascript" language="javascript" src="js/pong.js"></script>
-		<script type="text/javascript" language="javascript" src="js/player.js"></script>
-		<script type="text/javascript" language="javascript" src="js/ball.js"></script>
-		<script type="text/javascript" language="javascript" src="js/field.js"></script>
-		<script type="text/javascript" language="javascript" src="js/ball.js"></script>
-		<script type="text/javascript" language="javascript">
-			var pong;
-			function init() {  
-				var canvas	= document.getElementById('canvas'),
-					ctx		= canvas.getContext("2d");
-
-				pong	= new Pong(ctx);
-				pong.init();
-			}
-		</script>  
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+		<script type="text/javascript" language="javascript" src="lib/undescore.js"></script>
+		<script type="text/javascript" language="javascript" src="lib/backbone.js"></script>
+		<script type="text/javascript" language="javascript" src="backbone/controller.js"></script>
+		<script type="text/javascript" language="javascript" src="backbone/model.js"></script>
+		<script type="text/javascript" language="javascript" src="backbone/view.js"></script>
+		<script type="text/javascript" language="javascript" src="backbone/main.js"></script>
+		<script>
+			$(function() {                
+				pong = new PongView();
+			});
+		</script>
 	</head>  
-	<body onload="init()" style="background-color: #000;">
-		<canvas id="canvas" width="1000" height="500"></canvas>
-	</body> 
-	<p><button id="stopit" onclick="pong.stop();">STOP!</button></p>
-	<p>hello</p>
+	<body>
+		<a href='#' class='do'><img src='./images/cannon.png' id="cannon"></a>
+		<canvas id="firingRange" width="300" height="200">
+	</body>
 </html>  
