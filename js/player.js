@@ -42,29 +42,23 @@ Player.prototype.getPosition = function(direction){
 			return this.x + (this.width / 2);
 			break;
 	}
-}
+};
 
-
-/**
- * Detect if the ball collides with the player
- */
 Player.prototype.ballCollision = function(ballPosition, direction){
-	switch(direction){
-		case 0:
-			if(ballPosition.y >= this.getPosition('top') || ballPosition.y <= this.getPosition('bottom')){
-				if(ballPosition.x + ballPosition.radius >= this.getPosition('left') && (ballPosition.y >= this.getPosition('top') || ballPosition.y <= this.getPosition('bottom') )){
-					return Math.abs(this.y - ballPosition.y);
-				}
-			}
-			break;
-		case 1:
-			if(ballPosition.y >= this.getPosition('top') || ballPosition.y <= this.getPosition('bottom')){
-				if(ballPosition.x - ballPosition.radius <= this.getPosition('right')  && ballPosition.y >= this.getPosition('top') && ballPosition.y <= this.getPosition('bottom')){
-					return Math.abs(this.y - ballPosition.y);
-				}
-			}
-			break;
-	}
+    if(ballPosition.y >= this.getPosition('top') && ballPosition.y <= this.getPosition('bottom')){
+        switch(direction){
+            case 1:
+                if(ballPosition.x + ballPosition.radius >= this.getPosition('left') && (ballPosition.y >= this.getPosition('top') || ballPosition.y <= this.getPosition('bottom') )){
+                    return (this.y - ballPosition.y);
+                }
+                break;
+            case -1:
+                if(ballPosition.x - ballPosition.radius <= this.getPosition('right')  && ballPosition.y >= this.getPosition('top') && ballPosition.y <= this.getPosition('bottom')){
+                    return (this.y - ballPosition.y);
+                }
+                break;
+        }
+    }
 	
-	return -1;
-}
+	return null;
+};
